@@ -365,7 +365,7 @@ p:last-child {
     position: absolute;
     left: 0px;
     top: 0px;
-    color: #1493AC;
+    color: var(--gradient-bronze);
 }
 
 .more-btn {
