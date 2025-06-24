@@ -1,0 +1,9 @@
+.section-tags{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.section-tags a{
+    display: block;
+    margin-right: 10px;
+}
