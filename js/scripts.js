@@ -93,7 +93,7 @@ function grayBlockMore() {
 
                 if ($(this).find('[data-more-item]').length > 3) {
                     if (!$(this).find('[data-more-btn-holder]').length) {
-                        $(this).append('<div class="more-btn" data-more-btn-holder=""><span class="btn btn--black-border about__btn" data-more-btn-item="">Показать все</span></div>')
+                        $(this).append('<div class="more-btn" data-more-btn-holder=""><span class="btn btn--bronze-border about__btn" data-more-btn-item="">Показать все</span></div>')
                     }
 
                     if ($(this).find('[data-more-item]').parents('.swiper-slide').length) {
