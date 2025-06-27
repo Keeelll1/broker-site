@@ -1,3 +1,5 @@
+
+
 $(document).ready(function () {
     aboutToggle()
     aboutToggleResize()
@@ -189,7 +191,6 @@ $(document).ready(function () {
     });
 
     $(window).resize(function () {
-        resizeSearch()
         resizeBurger()
     });
 })
@@ -339,3 +340,83 @@ function sliderDefault(nameSlider, spaceBetween, spaceBetween992, breakpoints120
         });
     }
 }
+
+let selector = document.querySelector("#tel")
+let im = new Inputmask("+7 (999) 999-99-99")
+im.mask(selector)
+
+let validation = new JustValidate("form")
+
+validation.addField("#name", [
+    {
+        rule: "required",
+        errorMessage: "Введите имя!"
+    },
+    {
+        rule: "minLength",
+        value: 2,
+        errorMessage: "Минимум 2 символа!"
+    }
+]).addField("#tel", [
+  {
+    validator: (value) => {
+      const phone = selector.inputmask.unmaskedvalue()
+      return Boolean(Number(phone) && phone.length > 0)
+    },
+    errorMessage: 'Введите телефон'
+  },
+  {
+    validator: (value) => {
+      const phone = selector.inputmask.unmaskedvalue()
+      return Boolean(Number(phone) && phone.length === 10)
+    },
+    errorMessage: 'Введите телефон полностью'
+  }
+]).addField("#msg", [
+  {
+    rule: "required",
+    errorMessage: "Введите сообщение!"
+  }
+]).onSuccess(async function() {
+    let data = {
+        name: document.getElementById("name").value,
+        tel: document.getElementById("tel").value,
+        msg: document.getElementById("msg").value
+    }
+
+    let response = await fetch("mail.php", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json; charset=UTF-8"
+        }
+    })
+
+    let result = await response.text()
+    
+    alert(result)
+})
+
+const popup = () => {
+    const openBtn = document.querySelectorAll('.btn__form'),
+        overlay = document.querySelector('.overlay'),
+        closeBtn = document.querySelector('.cross'),
+        body = document.querySelector('body'),
+        html = document.querySelector('html')
+
+    openBtn.forEach(btn => {
+        btn.addEventListener('click', () => {
+            overlay.classList.add('open')
+            body.classList.add('no-scroll')
+            html.classList.add('no-scroll')
+        })
+
+        closeBtn.addEventListener('click', () => {
+            overlay.classList.remove('open')
+            body.classList.remove('no-scroll')
+            html.classList.remove('no-scroll')
+        })
+    })
+}
+
+popup()
