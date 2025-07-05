@@ -7401,3 +7401,9 @@ html.no-scroll{
 	border: 1px solid var(--gradient-bronze);
 	border-radius: 7px;
 }
+
+.form__tel{
+    color: var(--gradient-bronze);
+    display: flex;
+    justify-content: center;
+}
